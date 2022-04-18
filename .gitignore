@@ -1,0 +1,10 @@
+fractol
+*.o
+main.c
+*.a
+*test*
+!**/test/
+*.sh
+*.out
+/scripts/
+*.fdf
