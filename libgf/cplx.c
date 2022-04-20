@@ -2,7 +2,7 @@
 
 t_cplx	cplx(double re, double im)
 {
-	t_cplx v;
+	t_cplx	v;
 
 	v.re = re;
 	v.im = im;
@@ -25,7 +25,7 @@ t_cplx	cplx_sub(t_cplx a, t_cplx b)
 
 t_cplx	cplx_mult(t_cplx a, t_cplx b)
 {
-	t_cplx v;
+	t_cplx	v;
 
 	v.re = a.re * b.re - a.im * b.im;
 	v.im = a.re * b.im + a.im * b.re;

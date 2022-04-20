@@ -88,6 +88,7 @@ t_gf_point	gf_point(int x, int y);
 void		gf_point_put(t_gf_ctx *ctx, t_gf_point point, t_gf_color color);
 t_gf_img	gf_img(void *mlx, int w, int h);
 void		gf_img_clear(t_gf_img *img);
+t_gf_point	gf_point_add(t_gf_point a, t_gf_point b);
 /*gf_basics.c*/
 void		gf_framebox_put(t_gf_ctx *ctx, t_gf_point pt_tl,
 				t_gf_point pt_br, t_gf_color color);
@@ -99,6 +100,9 @@ int			gf_lineclip(t_gf_img *img, t_gf_point *pt1, t_gf_point *pt2);
 /*gf_color.c*/
 int			gf_ctoi(t_gf_color color);
 t_gf_color	gf_rgb(int r, int g, int b);
+t_gf_color	gf_hsl(double h, double s, double l);
+t_gf_color	gf_hsv(double h, double s, double v);
+/*gf_grad.c*/
 t_gf_grad	gf_grad(t_gf_color beg, t_gf_color end, double ibeg, double iend);
 t_gf_color	gf_color_grad(double i, t_gf_grad *grad);
 /*gf_vector.c*/

@@ -14,6 +14,13 @@ t_gf_point	gf_point(int x, int y)
 	return (point);
 }
 
+t_gf_point	gf_point_add(t_gf_point a, t_gf_point b)
+{
+	a.x += b.x;
+	a.y += b.y;
+	return (a);
+}
+
 void	gf_point_put(t_gf_ctx *ctx, t_gf_point point, t_gf_color color)
 {
 	ctx->img.pxput(&ctx->img, point,

@@ -2,7 +2,7 @@
 
 t_cplx	cplx_square(t_cplx a)
 {
-	t_cplx v;
+	t_cplx	v;
 
 	v.re = a.re * a.re - a.im * a.im;
 	v.im = 2 * (a.re * a.im);

@@ -6,7 +6,6 @@
 #include "gf.h"
 #include "gf_int.h"
 
-
 // static void	gf_line_put_x(
 // 	t_gf_ctx *ctx, t_gf_point beg, t_gf_point end, int good_color)
 // {

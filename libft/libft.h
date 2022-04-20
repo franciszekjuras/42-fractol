@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 18:38:47 by fjuras            #+#    #+#             */
-/*   Updated: 2022/04/10 17:21:29 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/04/19 09:54:40 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_ull			ft_absull(long long n);
 int				ft_abs(int n);
 int				ft_max(int n1, int n2);
 int				ft_min(int n1, int n2);
+double			ft_fmax(double n1, double n2);
+double			ft_fmin(double n1, double n2);
 int				ft_isascii(int c);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);

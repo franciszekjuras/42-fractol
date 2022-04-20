@@ -1,3 +1,4 @@
+#include <math.h>
 #include <mlx/mlx.h>
 #include "gf.h"
 
@@ -17,46 +18,74 @@ t_gf_color	gf_rgb(int r, int g, int b)
 	return (color);
 }
 
-t_gf_grad	gf_grad(t_gf_color beg, t_gf_color end, double ibeg, double iend)
+/**
+ * Conversion from hsl to (rgb) t_gf_color.
+ * All parameters are in [0, 1] range.
+ * 
+ * @param h hue
+ * @param s saturation
+ * @param l lightness
+ * @return t_gf_color 
+ */
+t_gf_color	gf_hsl(double h, double s, double l)
 {
-	t_gf_grad	g;
-	double		idif;
+	double	c;
+	double	x;
+	double	m;
 
-	if (ibeg <= iend)
-	{
-		g.beg = beg;
-		g.end = end;
-		g.ibeg = ibeg;
-		g.iend = iend;
-	}
-	else{
-		g.beg = end;
-		g.end = beg;
-		g.ibeg = iend;
-		g.iend = ibeg;
-	}
-	idif = g.iend - g.ibeg;
-	// g.va = (g.end.a - g.beg.a) / idif;
-	g.vr = (g.end.r - g.beg.r) / idif;
-	g.vg = (g.end.g - g.beg.g) / idif;
-	g.vb = (g.end.b - g.beg.b) / idif;
-	return (g);
+	h = 6. * fmod(h, 1.);
+	c = (1. - fabs(2 * l - 1.)) * s * 255.;
+	x = c * (1. - fabs(fmod(h, 2.) - 1.));
+	m = (l * 255. - c / 2.);
+	c = round(c + m);
+	x = round(x + m);
+	m = round(m);
+	if (h < 1.)
+		return (gf_rgb(c, x, m));
+	else if (h < 2.)
+		return (gf_rgb(x, c, m));
+	else if (h < 3.)
+		return (gf_rgb(m, c, x));
+	else if (h < 4.)
+		return (gf_rgb(m, x, c));
+	else if (h < 5.)
+		return (gf_rgb(x, m, c));
+	else
+		return (gf_rgb(c, m, x));
 }
 
-t_gf_color	gf_color_grad(double i, t_gf_grad *grad)
+/**
+ * Conversion from hsv to (rgb) t_gf_color.
+ * All parameters are in [0, 1] range.
+ * 
+ * @param h hue
+ * @param s saturation
+ * @param l lightness
+ * @return t_gf_color 
+ */
+t_gf_color	gf_hsv(double h, double s, double v)
 {
-	t_gf_color	c;
-	double 		di;
+	double	c;
+	double	x;
+	double	m;
 
-	if (i <= grad->ibeg)
-		return (grad->beg);
-	if (i >= grad->iend)
-		return (grad->end);
-	di = (i - grad->ibeg);
-	c = grad->beg;
-	c.a += (int)(di * grad->va);
-	c.r += (int)(di * grad->vr);
-	c.g += (int)(di * grad->vg);
-	c.b += (int)(di * grad->vb);
-	return (c);
+	h = 6. * fmod(h, 1.);
+	c = s * v * 255.;
+	x = c * (1. - fabs(fmod(h, 2.) - 1.));
+	m = (v * 255. - c);
+	c = round(c + m);
+	x = round(x + m);
+	m = round(m);
+	if (h < 1.)
+		return (gf_rgb(c, x, m));
+	else if (h < 2.)
+		return (gf_rgb(x, c, m));
+	else if (h < 3.)
+		return (gf_rgb(m, c, x));
+	else if (h < 4.)
+		return (gf_rgb(m, x, c));
+	else if (h < 5.)
+		return (gf_rgb(x, m, c));
+	else
+		return (gf_rgb(c, m, x));
 }
