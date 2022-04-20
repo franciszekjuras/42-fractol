@@ -90,7 +90,7 @@ int	render(t_gf_ctx *ctx)
 		pixels[0] += pixels[1];
 		++data->i;
 	}
-	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img.img, 0, 0);
+	gf_img_put(ctx, &ctx->img);
 	if (pixels[1] == 0)
 		mlx_loop_hook(ctx->mlx, 0, 0);
 	return (0);

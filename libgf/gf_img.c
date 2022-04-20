@@ -5,28 +5,6 @@
 #include "gf.h"
 #include "gf_int.h"
 
-t_gf_point	gf_point(int x, int y)
-{
-	t_gf_point	point;
-
-	point.x = x;
-	point.y = y;
-	return (point);
-}
-
-t_gf_point	gf_point_add(t_gf_point a, t_gf_point b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	return (a);
-}
-
-void	gf_point_put(t_gf_ctx *ctx, t_gf_point point, t_gf_color color)
-{
-	ctx->img.pxput(&ctx->img, point,
-		mlx_get_color_value(ctx->mlx, gf_ctoi(color)));
-}
-
 t_gf_img	gf_img(void *mlx, int w, int h)
 {
 	t_gf_img	img;
@@ -35,6 +13,7 @@ t_gf_img	gf_img(void *mlx, int w, int h)
 	img.img = mlx_new_image(mlx, w, h);
 	img.w = w;
 	img.h = h;
+	img.pos = gf_point(0, 0);
 	img.adr = mlx_get_data_addr(img.img, &bitspp, &img.lnlen, &img.endn);
 	img.bypp = bitspp / 8;
 	if (img.bypp == 4)
@@ -45,6 +24,12 @@ t_gf_img	gf_img(void *mlx, int w, int h)
 		exit(1);
 	}
 	return (img);
+}
+
+void	gf_img_put(t_gf_ctx *ctx, t_gf_img *img)
+{
+	mlx_put_image_to_window(ctx->mlx, ctx->win, img->img,
+		img->pos.x, img->pos.y);
 }
 
 void	gf_img_clear(t_gf_img *img)

@@ -62,14 +62,15 @@ typedef struct s_gf_grad
 
 typedef struct s_gf_img
 {
-	void	*img;
-	void	*adr;
-	int		bypp;
-	int		lnlen;
-	int		endn;
-	int		w;
-	int		h;
-	void	(*pxput)(struct s_gf_img *, t_gf_point, int);
+	void		*img;
+	void		*adr;
+	int			bypp;
+	int			lnlen;
+	int			endn;
+	int			w;
+	int			h;
+	t_gf_point	pos;
+	void		(*pxput)(struct s_gf_img *, t_gf_point, int);
 }	t_gf_img;
 
 typedef struct s_gf_ctx
@@ -85,10 +86,13 @@ typedef struct s_gf_ctx
 
 /*gf_core.c*/
 t_gf_point	gf_point(int x, int y);
-void		gf_point_put(t_gf_ctx *ctx, t_gf_point point, t_gf_color color);
-t_gf_img	gf_img(void *mlx, int w, int h);
-void		gf_img_clear(t_gf_img *img);
 t_gf_point	gf_point_add(t_gf_point a, t_gf_point b);
+t_gf_point	gf_point_sub(t_gf_point a, t_gf_point b);
+void		gf_point_put(t_gf_ctx *ctx, t_gf_point point, t_gf_color color);
+/*gf_img.c*/
+t_gf_img	gf_img(void *mlx, int w, int h);
+void		gf_img_put(t_gf_ctx *ctx, t_gf_img *img);
+void		gf_img_clear(t_gf_img *img);
 /*gf_basics.c*/
 void		gf_framebox_put(t_gf_ctx *ctx, t_gf_point pt_tl,
 				t_gf_point pt_br, t_gf_color color);
