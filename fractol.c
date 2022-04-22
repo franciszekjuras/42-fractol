@@ -16,7 +16,7 @@ void	ctx_data_init(t_gf_ctx *ctx, t_data *data)
 	data->params = ft_calloc(2, sizeof(double));
 	data->params[0] = -0.4;
 	data->params[1] = 0.6;
-	data->fractal = mandelbrot;
+	data->fractal = burning_ship;
 	data->color_fun = color_fun;
 	data->maxit = MAX_ITER;
 }

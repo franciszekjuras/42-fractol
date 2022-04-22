@@ -39,3 +39,22 @@ int	julia(t_cplx c, int maxit, double *params)
 		z = cplx_add(cplx_square(z), p);
 	return (i);
 }
+
+int	burning_ship(t_cplx c, int maxit, double *params)
+{
+	int		i;
+	t_cplx	z;
+
+	(void) params;
+	c = cplx_conj(c);
+	i = 0;
+	z = cplx(0, 0);
+	while (i < maxit && cplx_abs2(z) < 4.)
+	{
+		z.re = fabs(z.re);
+		z.im = fabs(z.im);
+		z = cplx_add(cplx_square(z), c);
+		++i;
+	}
+	return (i);
+}
