@@ -7,15 +7,16 @@ OFILES = $(FILES:%=%.o)
 CFLAGS = -Wall -Wextra
 OPTIM = -O3
 export OPTIM
-INC = -I.
+INC = -I. -I/usr/X11/include
 LIBS= -lgf -lft -lmlx -lXext -lX11 -lm
+X11_LDIR = -L/usr/X11/lib
 LIBS_FILES = libft/libft.a libgf/libgf.a mlx/libmlx.a
 LIBS_DIRS = $(addprefix -L, $(dir $(LIBS_FILES)))
 
 all: $(NAME)
 
 $(NAME): $(OFILES) $(LIBS_FILES)
-	gcc $(LIBS_DIRS) $(OFILES) $(LIBS) -o $@
+	gcc $(LIBS_DIRS) $(X11_LDIR) $(OFILES) $(LIBS) -o $@
 
 $(OFILES): %.o: %.c
 	gcc $(CFLAGS) $(OPTIM) $(INC) -c $< -o $@

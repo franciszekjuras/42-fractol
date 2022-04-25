@@ -1,6 +1,5 @@
 fractol
 *.o
-main.c
 *.a
 *test*
 !**/test/
