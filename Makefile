@@ -41,6 +41,10 @@ re_: fclean_ all
 
 re: re_libs re_
 
+mlx_clean_gen:
+	rm -f mlx/makefile.gen
+	rm -f mlx/test/makefile.gen
+
 clean_libs:
 	make clean -C libft
 	make clean -C libgf
@@ -51,4 +55,4 @@ re_libs:
 	make re -C libgf
 	make re -C mlx
 
-.PHONY: clean clean_ fclean fclean_ re re_ re_libs clean_libs FORCE
+.PHONY: clean clean_ fclean fclean_ re re_ re_libs clean_libs mlx_clean_gen FORCE
