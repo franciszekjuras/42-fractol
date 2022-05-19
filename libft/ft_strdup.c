@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 17:55:08 by fjuras            #+#    #+#             */
-/*   Updated: 2022/03/01 12:43:08 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/04/25 19:58:06 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ char	*ft_strndup(const char *str, size_t len)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	return (ft_strndup(s + start, len));
+	return (ft_strndup(s + ft_strnlen(s, start), len));
 }

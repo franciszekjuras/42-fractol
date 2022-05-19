@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 20:38:30 by fjuras            #+#    #+#             */
+/*   Updated: 2022/05/19 20:38:30 by fjuras           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <X11/X.h>
 #include <mlx/mlx.h>
 #include <libft/libft.h>
@@ -24,8 +36,8 @@ void	ctx_data_init(t_gf_ctx *ctx, t_data *data)
 void	context_init(t_gf_ctx *ctx)
 {
 	ctx->mlx = mlx_init();
-	ctx->w = 800;
-	ctx->h = 600;
+	ctx->w = 1000;
+	ctx->h = 700;
 	ctx->win = mlx_new_window(ctx->mlx, ctx->w, ctx->h, "Fractol");
 	ctx->img = gf_img(ctx->mlx, ctx->w, ctx->h);
 	ctx->do_repaint = 1;

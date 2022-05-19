@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 20:49:30 by fjuras            #+#    #+#             */
+/*   Updated: 2022/05/19 20:49:31 by fjuras           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
 # include <libgf/gf.h>
 # include <libgf/cplx.h>
 
-# define MAX_ITER 500
+# define MAX_ITER 300
 # define ZOOM_STEP 1.2
 
 typedef struct s_data

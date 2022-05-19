@@ -2,7 +2,7 @@ NAME = libgf.a
 
 FILES = \
 	gf_basics gf_camera gf_color gf_img gf_line gf_lineclip\
-	gf_point gf_vector gf_vector2 gf_vector3 \
+	gf_point gf_grad gf_vector gf_vector2 gf_vector3 \
 	cplx cplx2 cplx3 \
 	gf_int_pxput gf_int_utils
 

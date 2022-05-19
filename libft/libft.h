@@ -6,13 +6,14 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 18:38:47 by fjuras            #+#    #+#             */
-/*   Updated: 2022/04/19 09:54:40 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/01 23:13:17 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stddef.h>
+# include <stdarg.h>
 
 typedef unsigned long long	t_ull;
 
@@ -22,6 +23,14 @@ typedef enum e_strtoi_err
 	FT_STRTOI_OVERFLOW = 0x02,
 	FT_STRTOI_EMPTY = 0x04
 }	t_strtoi_err;
+
+/*get_next_line*/
+char			*ft_get_next_line(int fd);
+void			*ft_gnl_close(int fd);
+
+/*printf*/
+int				ft_dprintf(int fd, const char *fstr, ...);
+int				ft_printf(const char *fstr, ...);
 
 void			ft_swapi(int *a, int *b);
 void			ft_swapp(void **p1, void **p2);
@@ -322,6 +331,8 @@ int				ft_strncmp(const char *s1, const char *s2, size_t len);
 char			**ft_split(char const *str, char delim);
 
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+
+char			*ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 /**
  * @brief 

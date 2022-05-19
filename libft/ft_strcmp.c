@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 15:02:25 by fjuras            #+#    #+#             */
-/*   Updated: 2022/02/28 16:22:27 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/04/25 21:12:06 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	if (little[0] == '\0')
 		return ((char *) big);
 	i = 0;
-	while (big[i] != '\0')
+	while (big[i] != '\0' && i < len)
 	{
 		j = 0;
 		while (big[i + j] == little[j])

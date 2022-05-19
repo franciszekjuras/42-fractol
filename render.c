@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/19 20:38:01 by fjuras            #+#    #+#             */
+/*   Updated: 2022/05/19 20:38:02 by fjuras           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <mlx/mlx.h>
 #include <libft/libft.h>
 #include <libgf/gf.h>
@@ -68,30 +80,40 @@ static int	render_tb(t_gf_ctx *ctx, t_gf_point rng[2])
 	return (pixels);
 }
 
+static int	render_next_square(t_gf_ctx *ctx, t_data *data)
+{
+	t_gf_point	rng[2];
+	int			pixels_limit;
+	int			pixels_current;
+	int			pixels_sum;
+
+	pixels_sum = 0;
+	pixels_current = -1;
+	pixels_limit = 5000 + data->i * 100;
+	while (pixels_sum < pixels_limit && pixels_current != 0)
+	{
+		rng[0] = gf_point_add(data->focus, gf_point(-data->i, -data->i));
+		rng[1] = gf_point_add(data->focus, gf_point(data->i, data->i));
+		pixels_current = render_lr(ctx, rng);
+		pixels_current += render_tb(ctx, rng);
+		pixels_sum += pixels_current;
+		++data->i;
+	}
+	return (pixels_current == 0);
+}
+
 int	render(t_gf_ctx *ctx)
 {
 	t_data		*data;
-	t_gf_point	rng[2];
-	int			pixels[3];
+	int			finished;
 
 	data = ctx->data;
 	if (ctx->do_repaint)
 		data->i = 0;
 	ctx->do_repaint = 0;
-	pixels[0] = 0;
-	pixels[1] = -1;
-	pixels[2] = 5000 + data->i * 100;
-	while (pixels[0] < pixels[2] && pixels[1] != 0)
-	{
-		rng[0] = gf_point_add(data->focus, gf_point(-data->i, -data->i));
-		rng[1] = gf_point_add(data->focus, gf_point(data->i, data->i));
-		pixels[1] = render_lr(ctx, rng);
-		pixels[1] += render_tb(ctx, rng);
-		pixels[0] += pixels[1];
-		++data->i;
-	}
+	finished = render_next_square(ctx, data);
 	gf_img_put(ctx, &ctx->img);
-	if (pixels[1] == 0)
+	if (finished)
 		mlx_loop_hook(ctx->mlx, 0, 0);
 	return (0);
 }
