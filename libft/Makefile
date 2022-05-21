@@ -6,7 +6,8 @@ FILES = \
 	ft_stris2 ft_strmpl ft_putn ft_strtoll_e ft_strtoll_e_utils \
 	ft_strtoull_e ft_strtonum ft_atoi ft_itoa ft_swap \
 	ft_get_next_line ft_get_next_line_utils \
-	ft_printf ft_parse_format ft_put_format ft_putnbr_format
+	ft_printf ft_parse_format ft_put_format ft_putnbr_format \
+	ft_argparse
 
 OFILES = $(FILES:%=%.o)
 
