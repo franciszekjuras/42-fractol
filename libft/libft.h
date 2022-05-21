@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 18:38:47 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/21 15:26:33 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/21 22:11:14 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,17 @@ t_ull			ft_strtoull_e(
 					const char *np, char **ep, int base, int *err);
 long long		ft_strtonum(
 					char **npp, long long min, long long max, int *err);
+
+/**
+ * @brief convert string to floating point number represented by integer
+ * base and power of 10
+ * 
+ * @param np string
+ * @param base pointer to store base number
+ * @param pow pointer to store power
+ * @return char* pointer past end of valid number
+ */
+char			*ft_strtofp(char *np, long long *base, int *pow10);
 
 /**
  * @brief 

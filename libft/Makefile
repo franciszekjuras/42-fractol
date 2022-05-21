@@ -7,7 +7,7 @@ FILES = \
 	ft_strtoull_e ft_strtonum ft_atoi ft_itoa ft_swap \
 	ft_get_next_line ft_get_next_line_utils \
 	ft_printf ft_parse_format ft_put_format ft_putnbr_format \
-	ft_argparse
+	ft_argparse ft_strtofp
 
 OFILES = $(FILES:%=%.o)
 
