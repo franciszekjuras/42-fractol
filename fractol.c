@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:38:30 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/22 11:40:11 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 13:06:34 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,40 @@
 // 	char	**params;
 // }	t_ft_argparse;
 
-static void ctx_data_init_fractal(t_data *data, t_ft_argparse *arg)
+static void	ctx_data_init_fractal(t_data *data, t_ft_argparse *arg)
 {
 	if (arg == NULL || arg->count == 0)
 		print_help_exit(1);
-	(void) data;
+	if (ft_strcmp(arg->params[0], "mandelbrot") == 0)
+		data->fractal = mandelbrot;
+	else if (ft_strcmp(arg->params[0], "burning ship") == 0
+		|| ft_strcmp(arg->params[0], "ship") == 0)
+		data->fractal = burning_ship;
+	else if (ft_strcmp(arg->params[0], "julia") == 0)
+	{
+		data->fractal = julia;
+		parse_fractal_params(data->params, arg->params + 1, 2, "julia");
+	}
+	else
+		print_help_exit(1);
 }
 
 static void	ctx_data_init(t_gf_ctx *ctx, t_data *data, t_ft_argparse *args)
 {
+	t_ft_argparse	*arg;
+
 	ctx->data = data;
 	ctx_data_init_fractal(data, ft_argparse_find(args, '-'));
 	data->center = gf_point(ctx->img.w / 2, ctx->img.h / 2);
 	data->focus = data->center;
 	data->pos = cplx(0., 0.);
 	data->ppx = 2. / data->center.x;
-	data->params = ft_calloc(2, sizeof(double));
-	data->params[0] = -0.4;
-	data->params[1] = 0.6;
-	// data->fractal = burning_ship;
 	data->color_fun = color_fun;
-	data->maxit = MAX_ITER;
+	arg = ft_argparse_find(args, 'i');
+	if (arg)
+		parse_integer_params(&data->maxit, arg, 1);
+	else
+		data->maxit = MAX_ITER;
 }
 
 static void	context_init(t_gf_ctx *ctx)
@@ -69,8 +82,7 @@ int	main(int argc, char **argv)
 	t_data			data;
 	t_ft_argparse	*args;
 
-	print_help_exit(0);
-	args = ft_argparse(argc, argv);	
+	args = ft_argparse(argc, argv);
 	context_init(&ctx);
 	ctx_data_init(&ctx, &data, args);
 	mlx_hook(ctx.win, DestroyNotify, 0, &close_app, &ctx);

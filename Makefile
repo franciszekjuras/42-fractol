@@ -1,7 +1,7 @@
 NAME = fractol
 
 FILES = \
-	fractol render fractals utils input
+	fractol render fractals utils utils2 input
 
 OFILES = $(FILES:%=%.o)
 CFLAGS = -Wall -Wextra

@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:14:31 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/21 15:41:00 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 12:33:40 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ static char	ft_argparse_arg_id(char *arg)
 {
 	if (arg[0] == '-')
 	{
-		if (arg[1] == '\0')
-			return ('\0');
-		return (arg[1]);
+		if (ft_isalpha(arg[1]) || arg[1] == '-')
+			return (arg[1]);
 	}
 	return ('\0');
 }
