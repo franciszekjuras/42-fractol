@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:49:30 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/19 20:49:31 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 11:38:19 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 
 int			render(t_gf_ctx *ctx);
 int			close_app(t_gf_ctx *ctx);
+void		print_help_exit(int status);
 t_cplx		pt_to_z(t_gf_point pt, t_data *data);
 t_gf_color	color_fun(int it);
 int			handle_key(int keycode, t_gf_ctx *ctx);

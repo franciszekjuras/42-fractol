@@ -6,14 +6,29 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:38:10 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/19 20:38:17 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 11:47:49 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <math.h>
+#include <libft/libft.h>
 #include <libgf/gf.h>
 #include "fractol.h"
+
+void	print_help_exit(int status)
+{
+	ft_putendl_fd("Usage: fractol <fractal> [parameters] [options]\n"
+	"Supported fractals:\n"
+	"	mandelbrot\n"
+	"	julia <real part> <imaginary part>\n"
+	"	\"burning ship\" | ship\n"
+	"Options:\n"
+	"	-s <width> <height> window size in pixels\n"
+	"	-i <max iterations> maximal number of iterations when rendering"
+	, 1);
+	exit(status);
+}
 
 int	close_app(t_gf_ctx *ctx)
 {

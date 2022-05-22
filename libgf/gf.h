@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:41:47 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/19 20:41:48 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 11:15:16 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int			gf_ctoi(t_gf_color color);
 t_gf_color	gf_rgb(int r, int g, int b);
 t_gf_color	gf_hsl(double h, double s, double l);
 t_gf_color	gf_hsv(double h, double s, double v);
+/*gf_strtodouble.c*/
+double		gf_strtodouble(char **npp);
 /*gf_grad.c*/
 t_gf_grad	gf_grad(t_gf_color beg, t_gf_color end, double ibeg, double iend);
 t_gf_color	gf_color_grad(double i, t_gf_grad *grad);
