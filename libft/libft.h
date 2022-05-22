@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 18:38:47 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/21 22:11:14 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 10:40:27 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,10 @@ long long		ft_strtonum(
  * @param np string
  * @param base pointer to store base number
  * @param pow pointer to store power
+ * @param err pointer to store error status
  * @return char* pointer past end of valid number
  */
-char			*ft_strtofp(char *np, long long *base, int *pow10);
+char			*ft_strtofp(char *np, long long *base, int *pow10, int *err);
 
 /**
  * @brief 

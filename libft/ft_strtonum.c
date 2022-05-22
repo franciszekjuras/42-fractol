@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 23:03:34 by fjuras            #+#    #+#             */
-/*   Updated: 2022/03/14 20:07:36 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 10:34:58 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ long long	ft_strtonum(
 {
 	long long	r;
 
+	*err = 0;
 	r = ft_strtoll_e(*npp, npp, 10, err);
 	if (r < min)
 	{

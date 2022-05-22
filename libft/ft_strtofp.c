@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 16:20:00 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/21 22:41:38 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/22 10:38:28 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,14 @@ static long long	ft_strtofp_base(char *np, char *end, int *digits)
 	return (res);
 }
 
-char	*ft_strtofp(char *np, long long *base, int *pow10)
+char	*ft_strtofp(char *np, long long *base, int *pow10, int *err)
 {
 	int		neg;
 	char	*end;
 	int		pos;
 	int		digits;
 
+	*err = 0;
 	neg = 0;
 	while (ft_isspace(*np))
 		++np;
@@ -89,6 +90,8 @@ char	*ft_strtofp(char *np, long long *base, int *pow10)
 	else if (*np == '+')
 		++np;
 	end = ft_strtofp_preparse(np, &pos);
+	if (end == np || (end == np + 1 && *np == '.'))
+		*err |= FT_STRTOI_EMPTY;
 	*base = ft_strtofp_base(np, end, &digits);
 	if (neg)
 		*base = -*base;
