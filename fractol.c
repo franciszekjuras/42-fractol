@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:38:30 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/22 13:06:34 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/23 18:40:43 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // 	char	**params;
 // }	t_ft_argparse;
 
-static void	ctx_data_init_fractal(t_data *data, t_ft_argparse *arg)
+static void	data_init_fractal(t_data *data, t_ft_argparse *arg)
 {
 	if (arg == NULL || arg->count == 0)
 		print_help_exit(1);
@@ -48,7 +48,6 @@ static void	ctx_data_init(t_gf_ctx *ctx, t_data *data, t_ft_argparse *args)
 	t_ft_argparse	*arg;
 
 	ctx->data = data;
-	ctx_data_init_fractal(data, ft_argparse_find(args, '-'));
 	data->center = gf_point(ctx->img.w / 2, ctx->img.h / 2);
 	data->focus = data->center;
 	data->pos = cplx(0., 0.);
@@ -58,16 +57,35 @@ static void	ctx_data_init(t_gf_ctx *ctx, t_data *data, t_ft_argparse *args)
 	if (arg)
 		parse_integer_params(&data->maxit, arg, 1);
 	else
-		data->maxit = MAX_ITER;
+		data->maxit = DEFAULT_ITER;
+	data->maxit = ft_max(data->maxit, MIN_ITER);
 }
 
-static void	context_init(t_gf_ctx *ctx)
+static void	context_init_window(t_gf_ctx *ctx, t_ft_argparse *args)
 {
-	ctx->mlx = mlx_init();
-	ctx->w = 1000;
-	ctx->h = 700;
+	t_ft_argparse	*arg;
+	int				win_size[2];
+	int				screen_size[2];
+
+	arg = ft_argparse_find(args, 's');
+	if (arg)
+		parse_integer_params(win_size, arg, 2);
+	else
+	{
+		win_size[0] = 800;
+		win_size[1] = 600;
+	}
+	mlx_get_screen_size(ctx->mlx, &screen_size[0], &screen_size[1]);
+	ctx->w = ft_max(400, ft_min(screen_size[0] * 9 / 10, win_size[0]));
+	ctx->h = ft_max(300, ft_min(screen_size[1] * 9 / 10, win_size[1]));
 	ctx->win = mlx_new_window(ctx->mlx, ctx->w, ctx->h, "Fractol");
 	ctx->img = gf_img(ctx->mlx, ctx->w, ctx->h);
+}
+
+static void	context_init(t_gf_ctx *ctx, t_ft_argparse *args)
+{
+	ctx->mlx = mlx_init();
+	context_init_window(ctx, args);
 	ctx->do_repaint = 1;
 	mlx_mouse_hook(ctx->win, handle_mouse_button, ctx);
 	mlx_hook(ctx->win, ButtonRelease, ButtonReleaseMask,
@@ -83,7 +101,8 @@ int	main(int argc, char **argv)
 	t_ft_argparse	*args;
 
 	args = ft_argparse(argc, argv);
-	context_init(&ctx);
+	data_init_fractal(&data, ft_argparse_find(args, '-'));
+	context_init(&ctx, args);
 	ctx_data_init(&ctx, &data, args);
 	mlx_hook(ctx.win, DestroyNotify, 0, &close_app, &ctx);
 	mlx_hook(ctx.win, KeyPress, KeyPressMask, &handle_key, &ctx);

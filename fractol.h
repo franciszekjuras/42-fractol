@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:49:30 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/22 13:01:40 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/23 15:48:50 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <libgf/gf.h>
 # include <libgf/cplx.h>
 
-# define MAX_ITER 300
+# define DEFAULT_ITER 500
+# define MIN_ITER 10
 # define ZOOM_STEP 1.2
 
 typedef struct s_data
