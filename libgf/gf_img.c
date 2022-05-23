@@ -6,11 +6,10 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:40:47 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/19 20:40:48 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/23 20:17:22 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <mlx/mlx.h>
 #include <libft/libft.h>
@@ -32,7 +31,7 @@ t_gf_img	gf_img(void *mlx, int w, int h)
 		img.pxput = gf_int_img_pxput4;
 	else
 	{
-		fprintf(stderr, "Error: Unsupported pixel width %d\n", img.bypp);
+		ft_dprintf(2, "Error: Unsupported pixel width %d\n", img.bypp);
 		exit(1);
 	}
 	return (img);

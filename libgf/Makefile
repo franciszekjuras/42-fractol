@@ -9,7 +9,7 @@ FILES = \
 
 OFILES = $(FILES:%=%.o)
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 
 OPTIM = -O3
 

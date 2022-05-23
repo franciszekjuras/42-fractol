@@ -6,13 +6,11 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:41:12 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/19 20:41:12 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/23 20:18:04 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
 #include <mlx/mlx.h>
 #include <libft/libft.h>
 #include "gf.h"
