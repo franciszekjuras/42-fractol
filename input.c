@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:38:25 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/19 20:38:26 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/23 18:45:11 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	handle_mouse_release(int button, int x, int y, t_gf_ctx *ctx)
 		mlx_hook(ctx->win, MotionNotify, PointerMotionMask, 0, 0);
 		ctx->img.pos = gf_point(0, 0);
 		diff = gf_point_sub(data->move_start, gf_point(x, y));
+		if (diff.x == 0 && diff.y == 0)
+			return (0);
 		cplx_iadd(&data->pos, cplx(diff.x * data->ppx, -diff.y * data->ppx));
 		data->focus = data->center;
 		gf_img_clear(&ctx->img);
