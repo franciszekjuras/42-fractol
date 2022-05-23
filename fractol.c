@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:38:30 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/23 18:40:43 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/23 19:22:32 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,23 @@
 #include "fractals.h"
 #include "fractol.h"
 
-// typedef struct s_ft_argparse
-// {
-// 	char	arg;
-// 	char	count;
-// 	char	**params;
-// }	t_ft_argparse;
-
 static void	data_init_fractal(t_data *data, t_ft_argparse *arg)
 {
 	if (arg == NULL || arg->count == 0)
 		print_help_exit(1);
 	if (ft_strcmp(arg->params[0], "mandelbrot") == 0)
+	{
+		data->pos = cplx(-0.7, 0.);
+		data->ppx = ft_fmax(1.4 / data->center.x, 1.2 / data->center.y);
 		data->fractal = mandelbrot;
+	}
 	else if (ft_strcmp(arg->params[0], "burning ship") == 0
 		|| ft_strcmp(arg->params[0], "ship") == 0)
+	{		
+		data->pos = cplx(-1.75, 0.035);
+		data->ppx = ft_fmax(0.06 / data->center.x, 0.05 / data->center.y);
 		data->fractal = burning_ship;
+	}
 	else if (ft_strcmp(arg->params[0], "julia") == 0)
 	{
 		data->fractal = julia;
@@ -51,8 +52,9 @@ static void	ctx_data_init(t_gf_ctx *ctx, t_data *data, t_ft_argparse *args)
 	data->center = gf_point(ctx->img.w / 2, ctx->img.h / 2);
 	data->focus = data->center;
 	data->pos = cplx(0., 0.);
-	data->ppx = 2. / data->center.x;
+	data->ppx = ft_fmax(1.8 / data->center.x, 1.8 / data->center.y);
 	data->color_fun = color_fun;
+	data_init_fractal(data, ft_argparse_find(args, '-'));
 	arg = ft_argparse_find(args, 'i');
 	if (arg)
 		parse_integer_params(&data->maxit, arg, 1);
@@ -101,9 +103,9 @@ int	main(int argc, char **argv)
 	t_ft_argparse	*args;
 
 	args = ft_argparse(argc, argv);
-	data_init_fractal(&data, ft_argparse_find(args, '-'));
 	context_init(&ctx, args);
 	ctx_data_init(&ctx, &data, args);
+	ft_argparse_free(args);
 	mlx_hook(ctx.win, DestroyNotify, 0, &close_app, &ctx);
 	mlx_hook(ctx.win, KeyPress, KeyPressMask, &handle_key, &ctx);
 	mlx_loop_hook(ctx.mlx, render, &ctx);
