@@ -4,7 +4,7 @@ FILES = \
 	fractol render fractals utils utils2 input
 
 OFILES = $(FILES:%=%.o)
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 OPTIM = -O3
 export OPTIM
 INC = -I. -I/usr/X11/include

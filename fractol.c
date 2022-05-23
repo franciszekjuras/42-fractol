@@ -6,7 +6,7 @@
 /*   By: fjuras <fjuras@student.42wolfsburg.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 20:38:30 by fjuras            #+#    #+#             */
-/*   Updated: 2022/05/23 19:22:32 by fjuras           ###   ########.fr       */
+/*   Updated: 2022/05/23 19:38:38 by fjuras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	data_init_fractal(t_data *data, t_ft_argparse *arg)
 	else if (ft_strcmp(arg->params[0], "julia") == 0)
 	{
 		data->fractal = julia;
+		data->ppx = ft_fmax(1.5 / data->center.x, 1.5 / data->center.y);
 		parse_fractal_params(data->params, arg->params + 1, 2, "julia");
 	}
 	else
@@ -52,7 +53,6 @@ static void	ctx_data_init(t_gf_ctx *ctx, t_data *data, t_ft_argparse *args)
 	data->center = gf_point(ctx->img.w / 2, ctx->img.h / 2);
 	data->focus = data->center;
 	data->pos = cplx(0., 0.);
-	data->ppx = ft_fmax(1.8 / data->center.x, 1.8 / data->center.y);
 	data->color_fun = color_fun;
 	data_init_fractal(data, ft_argparse_find(args, '-'));
 	arg = ft_argparse_find(args, 'i');
